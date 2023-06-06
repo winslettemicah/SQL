@@ -1,0 +1,50 @@
+-- Creating a CameraShop database table
+CREATE TABLE CameraShop (
+    CameraID INTEGER PRIMARY KEY,
+    BrandName TEXT,
+    CameraName TEXT,
+    ReleaseDate INTEGER,
+    Price INTEGER,
+    Quantity INTEGER
+);
+
+-- Inserting data into CameraShop Table
+INSERT INTO CameraShop
+VALUES
+    (1, "Sony", "Alpha a6000", 2014, 699,3),
+    (2, "Canon", "EOS R", 2018, 1999, 7),
+    (3, "Nikon", "D850", 2017, 1099, 11),
+    (4, "DJI", "Pocket 2", 2020, 399, 29),
+    (5, "Fujifilm", "X-S10", 2020, 1199, 21),
+    (6, "Panasonic", "Lumix GH6", 2022, 2199, 7),
+    (7, "GoPro", "Hero9 Black", 2020, 699, 23),
+    (8, "Canon", "EOS R6 Mark II", 2022, 999, 25),
+    (9, "GoPro", "Hero11 Black", 2022, 799, 30),
+    (10, "Panasonic", "Lumix DC-S5", 2023, 2299, 2),
+    (11, "Sony", "Alpha a7 IV", 2021, 2499, 26),
+    (12, "Olympus", "Tough TG-6", 2019, 899, 10),
+    (13, "Fujifilm", "X-H2S", 2022, 2399, 16),
+    (14, "Nikon", "Z6 II", 2020, 1899, 12),
+    (15, "Fujifilm", "X100V", 2020, 1799, 18)
+;
+
+-- Displaying the database table
+SELECT * FROM CameraShop
+ORDER BY ReleaseDate ASC;
+
+-- Displaying total of Cameras grouped by BrandName and ordered by SUM(Quantity)
+SELECT SUM(Quantity), BrandName
+FROM CameraShop
+GROUP BY BrandName
+ORDER BY SUM(Quantity);
+
+-- Displaying all cameras name and brand ordered by Price
+SELECT BrandName, CameraName, Price
+FROM CameraShop
+ORDER BY Price;
+
+-- Displaying top 5 most expensive cameras
+SELECT CameraName, Price, Quantity
+FROM CameraShop
+ORDER BY Price DESC
+LIMIT 5
