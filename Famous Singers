@@ -1,0 +1,98 @@
+--NOTE: Change debut_year from INTEGER into FLOAT in MySQL (as FLOAT is not yet supported in Khan Academy)
+/* Create table about the people and what they do here */
+
+CREATE TABLE Singers (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    name TEXT,
+    genre TEXT,
+    debut_year INTEGER,
+    nationality TEXT
+);
+
+INSERT INTO Singers (name, genre, debut_year, nationality)
+VALUES
+    ("Taylor Swift", "Pop", 2006, "American"),
+    ("Ed Sheeran", "Pop", 2011, "British"),
+    ("Beyoncé", "R&B", 1997, "American"),
+    ("Adele", "Pop", 2008, "British"),
+    ("Bruno Mars", "Pop", 2010, "American"),
+    ("Rihanna", "Pop", 2005, "Barbadian"),
+    ("Justin Bieber", "Pop", 2009, "Canadian"),
+    ("Katy Perry", "Pop", 2001, "American"),
+    ("Drake", "Hip Hop", 2006, "Canadian"),
+    ("Ariana Grande", "Pop", 2008, "American"),
+    ("The Weeknd", "R&B", 2010, "Canadian"),
+    ("Shakira", "Pop", 1991, "Colombian"),
+    ("Eminem", "Hip Hop", 1996, "American"),
+    ("Coldplay", "Alternative Rock", 1996, "British"),
+    ("BTS", "K-pop", 2013, "South Korean"),
+    ("BlackPink", "K-pop", 2016, "South Korean")
+;
+    
+SELECT * FROM singers;
+
+CREATE TABLE Songs (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    singer_id INTEGER,
+    title TEXT,
+    release_year INTEGER,
+    duration INTEGER,
+    FOREIGN KEY (singer_id) REFERENCES Singers(id)
+);
+
+INSERT INTO Songs (singer_id, title, release_year, duration)
+VALUES
+    (1, "Love Story", 2008, 4.00),
+    (1, "Blank Space", 2014, 3.51),
+    (2, "Shape of You", 2017, 3.53),
+    (2, "Thinking Out Loud", 2014, 4.41),
+    (3, "Single Ladies (Put a Ring on It)", 2008, 3.13),
+    (3, "Halo", 2008, 4.21),
+    (4, "Hello", 2015, 4.55),
+    (4, "Someone Like You", 2011, 4.45),
+    (5, "Just the Way You Are", 2010, 3.40),
+    (5, "Grenade", 2010, 3.42),
+    (6, "Umbrella", 2007, 4.35),
+    (6, "Diamonds", 2012, 3.45),
+    (7, "Baby", 2010, 3.35),
+    (7, "Sorry", 2015, 3.20),
+    (8, "Firework", 2010, 3.48),
+    (8, "Roar", 2013, 3.42),
+    (9, "God's Plan", 2018, 3.18),
+    (9, "Hotline Bling", 2015, 4.27),
+    (10, "Thank U, Next", 2018, 3.27),
+    (10, "Positions", 2020, 2.52),
+    (11, "Blinding Lights", 2019, 3.22),
+    (11, "Can't Feel My Face", 2015, 3.36),
+    (12, "Hips Don't Lie", 2006, 3.38),
+    (12, "Waka Waka (This Time for Africa)", 2010, 3.23),
+    (13, "Lose Yourself", 2002, 5.26),
+    (13, "Stan", 2000, 6.44),
+    (14, "Viva La Vida", 2008, 4.03),
+    (14, "The Scientist", 2002, 5.09),
+    (15, "Dope", 2013, 4.02),
+    (15, "Blood Sweat & Tears", 2016, 3.36)
+;
+    
+SELECT * FROM songs;
+
+--INNER JOIN
+SELECT Singers.name AS singer_name, Songs.title AS song_title, Songs.release_year
+FROM Singers
+JOIN Songs
+ON Singers.id = Songs.singer_id;
+
+--LEFT JOIN
+SELECT Singers.name AS singer_name, Songs.title AS song_title, Songs.release_year
+FROM Singers
+LEFT JOIN Songs
+ON Singers.id = Songs.singer_id
+WHERE Songs.title IS NULL;
+
+--WITH GROUP BY and ORDER
+SELECT Singers.name AS singer_name, Singers.Genre, SUM(Songs.duration) AS total_duration
+FROM Singers
+LEFT JOIN Songs
+ON Singers.id = Songs.singer_id
+GROUP BY Singers.id
+ORDER BY total_duration DESC
