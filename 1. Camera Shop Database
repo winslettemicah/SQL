@@ -28,22 +28,22 @@ VALUES
     (15, "Fujifilm", "X100V", 2020, 1799, 18)
 ;
 
--- 1. Displaying the database table
+-- Displaying the database table
 SELECT * FROM CameraShop
 ORDER BY ReleaseDate ASC;
 
--- 2. Displaying total of Cameras grouped by BrandName and ordered by SUM(Quantity)
-SELECT SUM(Quantity), BrandName
+-- Displaying total of Cameras grouped by BrandName and ordered by SUM(Quantity)
+SELECT BrandName, SUM(Quantity)
 FROM CameraShop
 GROUP BY BrandName
 ORDER BY SUM(Quantity);
 
--- 3. Displaying all cameras name and brand ordered by Price
+-- Displaying all cameras name and brand ordered by Price
 SELECT BrandName, CameraName, Price
 FROM CameraShop
 ORDER BY Price;
 
--- 4. Displaying top 5 most expensive cameras
+-- Displaying top 5 most expensive cameras
 SELECT CameraName, Price, Quantity
 FROM CameraShop
 ORDER BY Price DESC
