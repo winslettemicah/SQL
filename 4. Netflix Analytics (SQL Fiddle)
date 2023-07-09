@@ -1,4 +1,5 @@
 /* Netflix Analytics (SQL Fiddle) */
+
 --This project reveals insights about TV and Movie content hosted on Netflix. 
 --The project was written using the PostgreSQL dialect and utilized data from the following two Netflix datasets:
 --SQL Fiddle link: http://sqlfiddle.com/#!17/7dae0/5612
