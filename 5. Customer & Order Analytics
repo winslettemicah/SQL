@@ -6,7 +6,6 @@ SELECT COUNT(orderID)
 FROM BIT_DB.JanSales
 WHERE length(orderID) = 6
 AND orderID <> 'Order ID';
---ANSWER: 9681
 
 --------------------------------------------------------------------------------------------------------------------------------------------
 
@@ -18,7 +17,6 @@ FROM BIT_DB.JanSales
 WHERE Product = 'iPhone'
 AND length(orderid) = 6 
 AND orderid <> 'Order ID';
---ANSWER: 379
 
 --------------------------------------------------------------------------------------------------------------------------------------------
 
@@ -43,7 +41,6 @@ WHERE price IN (
     SELECT MIN(price)
     FROM BIT_DB.JanSales
     );
---ANSWER: AAA Batteries (4-pack) @ 2.99
 
 --------------------------------------------------------------------------------------------------------------------------------------------
 
@@ -65,7 +62,6 @@ SELECT Product, SUM(Quantity), (SUM(Quantity) * price) AS Revenue
 FROM BIT_DB.FebSales
 WHERE location = '548 Lincoln St, Seattle, WA 98101'
 GROUP BY Product;
---ANSWER: AA Batteries (4-pack)	2	7.68
 
 --------------------------------------------------------------------------------------------------------------------------------------------
 
@@ -79,3 +75,13 @@ ON  FebSales.OrderID = customers.order_id
 WHERE FebSales.Quantity > 2
     AND length(orderid) = 6
     AND orderid <> 'Order ID';
+    
+--------------------------------------------------------------------------------------------------------------------------------------------
+    
+/*
+8. List all the products sold in Los Angeles in February, and include how many of each were sold.
+*/
+SELECT Product, SUM(Quantity)
+FROM BIT_DB.FebSales
+WHERE location LIKE '%Los Angeles%'
+GROUP BY Product;
