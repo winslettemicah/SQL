@@ -48,7 +48,7 @@ FROM BIT_DB.SpotifyData
 ORDER BY popularity desc
 LIMIT 10;
 
---Another query
+--Another query using CTE (Common Table Expressions/Temporary Tables)
 /*
 Calculate the average popularity for the artists in the Spotify data table. Then, for every artist with an average popularity of 90 or above, show their name, 
 their average popularity, and label them as a “Top Star”.
